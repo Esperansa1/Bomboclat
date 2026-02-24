@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Initialize Cargo crate with full dependency set and Tokio async entry point
+- [x] 01-01-PLAN.md — Initialize Cargo crate with full dependency set and Tokio async entry point
 - [ ] 01-02-PLAN.md — Implement env/dotenv credential loading with startup validation and fail-fast on missing vars
 
 ### Phase 2: WebSocket Connection
@@ -114,7 +114,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Scaffold | 0/2 | Not started | - |
+| 1. Scaffold | 1/2 | In progress | - |
 | 2. WebSocket Connection | 0/2 | Not started | - |
 | 3. Whitelist Engine | 0/2 | Not started | - |
 | 4. Buy Execution | 0/2 | Not started | - |

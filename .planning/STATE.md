@@ -10,24 +10,24 @@ See: .planning/PROJECT.md (updated 2026-02-24)
 ## Current Position
 
 Phase: 1 of 6 (Scaffold)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-02-24 — Roadmap created, 6 phases defined, 17/17 requirements mapped
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-02-24 — Plan 01-01 complete: Rust crate scaffold with tokio, reqwest, ahash, dotenvy; cargo build exits 0
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 8%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: -
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: 10 min
+- Total execution time: 0.17 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-scaffold | 1 | 10 min | 10 min |
 
 *Updated after each plan completion*
 
@@ -41,6 +41,8 @@ Progress: [░░░░░░░░░░] 0%
 - CapSolver only on HTTP buy endpoint: WebSocket does not require challenge resolution
 - CSGORoll markup as sole decision signal: eliminates external API latency from hot path
 - Hot path constraint: zero disk I/O, zero heap allocation where avoidable, no locks on critical decision path
+- capsolver crate TBD: neither capsolver nor capsolver-rs resolve on crates.io; Phase 4 will use reqwest directly against CapSolver REST API
+- native-tls chosen over rustls for TLS on Windows (avoids OpenSSL packaging issues)
 
 ### Pending Todos
 
@@ -53,5 +55,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-24
-Stopped at: Roadmap approved, ready to plan Phase 1 (Scaffold)
+Stopped at: Completed 01-scaffold-01-PLAN.md (Rust crate scaffold complete)
 Resume file: None

@@ -8,14 +8,14 @@
 ### Connection (CONN)
 
 - [ ] **CONN-01**: Bot connects to CSGORoll's WebSocket feed and maintains a persistent, auto-reconnecting connection with exponential backoff
-- [ ] **CONN-02**: Bot loads auth credentials (API token / session cookie) from environment variables or .env file at startup
+- [x] **CONN-02**: Bot loads auth credentials (API token / session cookie) from environment variables or .env file at startup
 - [ ] **CONN-03**: Bot uses a single pre-authenticated keep-alive HTTP/1.1 connection for buy requests (no TLS handshake per order)
 
 ### Protection (PROT)
 
 - [ ] **PROT-01**: Bot uses CapSolver to resolve Cloudflare challenges on the HTTP buy endpoint
 - [ ] **PROT-02**: Bot uses CapSolver to resolve any captcha challenges during buy request flow
-- [ ] **PROT-03**: CapSolver API key is loaded from environment variables or .env file at startup
+- [x] **PROT-03**: CapSolver API key is loaded from environment variables or .env file at startup
 
 ### Matching (MATCH)
 
@@ -68,11 +68,11 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | CONN-01 | Phase 2 | Pending |
-| CONN-02 | Phase 1 | Pending |
+| CONN-02 | Phase 1 | Complete |
 | CONN-03 | Phase 4 | Pending |
 | PROT-01 | Phase 4 | Pending |
 | PROT-02 | Phase 4 | Pending |
-| PROT-03 | Phase 1 | Pending |
+| PROT-03 | Phase 1 | Complete |
 | MATCH-01 | Phase 3 | Pending |
 | MATCH-02 | Phase 3 | Pending |
 | MATCH-03 | Phase 3 | Pending |
@@ -92,4 +92,4 @@
 
 ---
 *Requirements defined: 2026-02-24*
-*Last updated: 2026-02-24 — traceability mapped after roadmap creation*
+*Last updated: 2026-02-24 — CONN-02, PROT-03 marked complete after plan 01-01*

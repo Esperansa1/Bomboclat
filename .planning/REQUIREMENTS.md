@@ -67,29 +67,29 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONN-01 | — | Pending |
-| CONN-02 | — | Pending |
-| CONN-03 | — | Pending |
-| PROT-01 | — | Pending |
-| PROT-02 | — | Pending |
-| PROT-03 | — | Pending |
-| MATCH-01 | — | Pending |
-| MATCH-02 | — | Pending |
-| MATCH-03 | — | Pending |
-| MATCH-04 | — | Pending |
-| MATCH-05 | — | Pending |
-| TRADE-01 | — | Pending |
-| TRADE-02 | — | Pending |
-| TRADE-03 | — | Pending |
-| TRADE-04 | — | Pending |
-| OBS-01 | — | Pending |
-| OBS-02 | — | Pending |
+| CONN-01 | Phase 2 | Pending |
+| CONN-02 | Phase 1 | Pending |
+| CONN-03 | Phase 4 | Pending |
+| PROT-01 | Phase 4 | Pending |
+| PROT-02 | Phase 4 | Pending |
+| PROT-03 | Phase 1 | Pending |
+| MATCH-01 | Phase 3 | Pending |
+| MATCH-02 | Phase 3 | Pending |
+| MATCH-03 | Phase 3 | Pending |
+| MATCH-04 | Phase 3 | Pending |
+| MATCH-05 | Phase 3 | Pending |
+| TRADE-01 | Phase 4 | Pending |
+| TRADE-02 | Phase 5 | Pending |
+| TRADE-03 | Phase 5 | Pending |
+| TRADE-04 | Phase 5 | Pending |
+| OBS-01 | Phase 6 | Pending |
+| OBS-02 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 17 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 17 ⚠️
+- Mapped to phases: 17
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-24*
-*Last updated: 2026-02-24 after initial definition*
+*Last updated: 2026-02-24 — traceability mapped after roadmap creation*

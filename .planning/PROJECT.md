@@ -8,6 +8,18 @@ An ultra-low-latency automated trading engine that monitors CSGORoll's real-time
 
 React to a new whitelisted listing before any other buyer does — the engine wins when it snipes items that would otherwise be taken by competitors within milliseconds.
 
+## Current Milestone: v1.0 — Trading Engine
+
+**Goal:** Build the complete Rust trading engine — from WebSocket connection to purchase execution — with balance tracking, configurable whitelist, and observability.
+
+**Target features:**
+- Persistent WebSocket connection with auto-reconnect
+- In-memory whitelist lookup (name × wear × StatTrak) with per-item markup + price thresholds
+- Buy execution with pre-authenticated keep-alive HTTP connection
+- Balance and inventory tracking; graceful exit on low funds
+- Async logging outside the hot path
+- End-to-end latency measurement
+
 ## Requirements
 
 ### Validated
@@ -22,9 +34,14 @@ React to a new whitelisted listing before any other buyer does — the engine wi
 - [ ] Evaluate each incoming listing against whitelist and markup threshold with zero disk I/O
 - [ ] Fire buy API request immediately on match using a pre-authenticated, keep-alive HTTP connection
 - [ ] Support per-item markup threshold configuration (default: 0%, configurable per skin/wear/StatTrak)
+- [ ] Support per-item min/max price configuration; global min price triggers process exit when balance falls below it
 - [ ] Differentiate StatTrak and non-StatTrak items in whitelist matching
 - [ ] Support all five wear tiers: Battle-Scarred, Well-Worn, Field-Tested, Minimal Wear, Factory New
+- [ ] Track coin balance and session inventory (list of items bought) in memory
+- [ ] Skip buy attempt silently if balance is insufficient for a specific item's price
+- [ ] Exit process cleanly when balance drops below configured global minimum purchase price
 - [ ] Log wins, misses, and errors to a persistent store outside the hot path
+- [ ] Load auth credentials (token/session) from environment variables or .env file at startup
 - [ ] Deploy on a VPS geographically co-located with CSGORoll's servers
 - [ ] Measure and expose end-to-end latency (WS event received → buy request sent) for tuning
 
@@ -65,4 +82,4 @@ React to a new whitelisted listing before any other buyer does — the engine wi
 | Single persistent HTTP connection for buys | Avoids TCP + TLS setup cost on every purchase attempt | — Pending |
 
 ---
-*Last updated: 2026-02-23 after initialization*
+*Last updated: 2026-02-24 after milestone v1.0 definition*

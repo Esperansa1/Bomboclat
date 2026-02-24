@@ -29,11 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. `cargo build` succeeds with Tokio, tokio-tungstenite, reqwest, ahash, dotenvy, capsolver-rs (or equivalent) in Cargo.toml
   2. Running the binary reads CSGOROLL_API_TOKEN, CSGOROLL_SESSION, and CAPSOLVER_API_KEY from environment or .env file and logs confirmation that all three are present
   3. Binary exits with a clear error message if any required credential is missing
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Initialize Cargo workspace, add dependencies, configure Tokio runtime entry point
-- [ ] 01-02: Implement env/dotenv credential loading with startup validation
+- [ ] 01-01-PLAN.md — Initialize Cargo crate with full dependency set and Tokio async entry point
+- [ ] 01-02-PLAN.md — Implement env/dotenv credential loading with startup validation and fail-fast on missing vars
 
 ### Phase 2: WebSocket Connection
 **Goal**: The bot connects to CSGORoll's WebSocket feed, receives live listing events, and automatically reconnects with exponential backoff after any disconnect

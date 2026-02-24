@@ -1,5 +1,8 @@
+mod config;
+
 #[tokio::main]
 async fn main() {
-    // TODO(01-02): load credentials here
-    println!("CSGORoll Sniper starting...");
+    let _config = config::Config::load();
+    // Phase 2 will use _config for WebSocket authentication
+    println!("CSGORoll Sniper ready.");
 }

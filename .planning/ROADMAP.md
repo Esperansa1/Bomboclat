@@ -46,8 +46,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Implement Socket.IO v4 WebSocket connect with auth handshake and raw frame receive loop
-- [ ] 02-02-PLAN.md — Add exponential backoff reconnect wrapper (run_with_reconnect) and clean driver in main.rs
+- [ ] 02-01-PLAN.md — Add serde deps, implement src/ws.rs with Trade struct and graphql-transport-ws connect_once (happy-path connection + trade parsing)
+- [ ] 02-02-PLAN.md — Add exponential backoff run_with_reconnect wrapper to src/ws.rs and update main.rs as persistent driver
 
 ### Phase 3: Whitelist Engine
 **Goal**: Incoming listing events are evaluated against a pre-loaded in-memory whitelist with sub-microsecond O(1) lookups, zero disk I/O on the hot path, and full support for all matching dimensions

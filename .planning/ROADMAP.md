@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Initialize Cargo crate with full dependency set and Tokio async entry point
-- [ ] 01-02-PLAN.md — Implement env/dotenv credential loading with startup validation and fail-fast on missing vars
+- [x] 01-02-PLAN.md — Implement env/dotenv credential loading with startup validation and fail-fast on missing vars
 
 ### Phase 2: WebSocket Connection
 **Goal**: The bot connects to CSGORoll's WebSocket feed, receives live listing events, and automatically reconnects with exponential backoff after any disconnect
@@ -43,11 +43,11 @@ Plans:
   1. Bot establishes authenticated WebSocket connection to CSGORoll and prints the first received listing event to stdout
   2. When the connection is forcibly dropped (e.g., network kill), the bot reconnects and resumes receiving events without process restart
   3. Reconnect delay follows exponential backoff (observable in logs: 1s, 2s, 4s, ... capped)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Implement WebSocket connect loop with Tokio, auth handshake, and raw frame logging
-- [ ] 02-02: Add exponential backoff reconnect logic and connection health monitoring
+- [ ] 02-01-PLAN.md — Implement Socket.IO v4 WebSocket connect with auth handshake and raw frame receive loop
+- [ ] 02-02-PLAN.md — Add exponential backoff reconnect wrapper (run_with_reconnect) and clean driver in main.rs
 
 ### Phase 3: Whitelist Engine
 **Goal**: Incoming listing events are evaluated against a pre-loaded in-memory whitelist with sub-microsecond O(1) lookups, zero disk I/O on the hot path, and full support for all matching dimensions

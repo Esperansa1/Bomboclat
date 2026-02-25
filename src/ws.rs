@@ -60,7 +60,7 @@ pub async fn connect_once(
     );
     headers.insert(
         "Cookie",
-        format!("session={}", config.csgoroll_session).parse()?,
+        config.csgoroll_session.parse()?,
     );
     headers.insert(
         "User-Agent",

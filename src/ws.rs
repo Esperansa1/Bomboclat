@@ -2,12 +2,11 @@ use crate::config::Config;
 use serde::Deserialize;
 use std::time::Duration;
 use tokio_tungstenite::{
-    connect_async_tls_with_config,
+    connect_async,
     tungstenite::{
         client::IntoClientRequest,
         Message,
     },
-    Connector,
 };
 use futures_util::{SinkExt, StreamExt};
 
@@ -69,15 +68,7 @@ pub async fn connect_once(
     );
 
     println!("[ws] Connecting to {}...", WS_URL);
-    let (mut ws, _response) = connect_async_tls_with_config(
-        request,
-        None,
-        false,
-        Some(Connector::NativeTls(
-            native_tls::TlsConnector::builder().build()?,
-        )),
-    )
-    .await?;
+    let (mut ws, _response) = connect_async(request).await?;
     println!("[ws] Connected. Sending connection_init...");
 
     // 1. Send connection_init — no payload, auth is via Cookie header

@@ -1,5 +1,6 @@
 use crate::config::Config;
 use serde::Deserialize;
+use std::time::Duration;
 use tokio_tungstenite::{
     connect_async_tls_with_config,
     tungstenite::{
@@ -221,4 +222,53 @@ fn parse_trade(val: &serde_json::Value) -> Option<Trade> {
         wear,
         is_stattrak,
     })
+}
+
+/// Runs the WebSocket connection indefinitely, reconnecting with exponential backoff on any error.
+///
+/// Backoff schedule: 1s -> 2s -> 4s -> 8s -> 16s -> 32s -> 60s (capped).
+/// Backoff resets to 1s after a connection attempt that successfully received at least one trade.
+///
+/// This function never returns under normal operation. It only returns if the caller's
+/// on_trade closure panics (which it should not).
+pub async fn run_with_reconnect(
+    config: &Config,
+    mut on_trade: impl FnMut(Trade),
+) {
+    const BACKOFF_CAP_SECS: u64 = 60;
+    const BACKOFF_RESET_SECS: u64 = 1;
+    let mut delay_secs: u64 = BACKOFF_RESET_SECS;
+
+    loop {
+        // Wrap on_trade to track whether we received at least one trade this attempt
+        let mut received_count: u32 = 0;
+        let result = connect_once(config, |trade| {
+            received_count += 1;
+            on_trade(trade);
+        })
+        .await;
+
+        match result {
+            Ok(()) => {
+                // Clean close — server closed the connection
+                println!("[ws] Connection closed cleanly. Reconnecting in {}s...", delay_secs);
+            }
+            Err(e) => {
+                eprintln!("[ws] Connection error: {}. Reconnecting in {}s...", e, delay_secs);
+            }
+        }
+
+        // Reset backoff if this connection was productive
+        if received_count > 0 {
+            delay_secs = BACKOFF_RESET_SECS;
+            println!("[ws] Productive session ({} trades). Backoff reset to 1s.", received_count);
+        }
+
+        tokio::time::sleep(Duration::from_secs(delay_secs)).await;
+
+        // Advance backoff for next failure (only advances if we didn't reset)
+        if received_count == 0 {
+            delay_secs = (delay_secs * 2).min(BACKOFF_CAP_SECS);
+        }
+    }
 }

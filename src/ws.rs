@@ -110,7 +110,7 @@ pub async fn connect_once(
                 ws.send(Message::Pong(data)).await?;
             }
             Some(Ok(_)) => {}
-            Some(Err(e)) => return Err(e.into()),
+            Some(Err(e)) => return Err(Box::new(e)),
             None => return Err("Connection closed before connection_ack".into()),
         }
     }
@@ -182,7 +182,7 @@ pub async fn connect_once(
                 return Ok(());
             }
             Some(Ok(_)) => {}
-            Some(Err(e)) => return Err(e.into()),
+            Some(Err(e)) => return Err(Box::new(e)),
             None => {
                 println!("[ws] Connection stream ended.");
                 return Ok(());

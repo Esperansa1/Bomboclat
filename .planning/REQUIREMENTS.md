@@ -7,7 +7,7 @@
 
 ### Connection (CONN)
 
-- [ ] **CONN-01**: Bot connects to CSGORoll's WebSocket feed and maintains a persistent, auto-reconnecting connection with exponential backoff
+- [x] **CONN-01**: Bot connects to CSGORoll's WebSocket feed and maintains a persistent, auto-reconnecting connection with exponential backoff
 - [x] **CONN-02**: Bot loads auth credentials (API token / session cookie) from environment variables or .env file at startup
 - [ ] **CONN-03**: Bot uses a single pre-authenticated keep-alive HTTP/1.1 connection for buy requests (no TLS handshake per order)
 
@@ -67,7 +67,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONN-01 | Phase 2 | Pending |
+| CONN-01 | Phase 2 | Complete |
 | CONN-02 | Phase 1 | Complete |
 | CONN-03 | Phase 4 | Pending |
 | PROT-01 | Phase 4 | Pending |

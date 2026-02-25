@@ -61,7 +61,7 @@ pub async fn connect_once(
     );
     headers.insert(
         "Cookie",
-        config.csgoroll_session.parse()?,
+        format!("session={}", config.csgoroll_session).parse()?,
     );
     headers.insert(
         "User-Agent",
@@ -80,16 +80,11 @@ pub async fn connect_once(
     .await?;
     println!("[ws] Connected. Sending connection_init...");
 
-    // 1. Send connection_init with auth token
-    let init_msg = serde_json::json!({
-        "type": "connection_init",
-        "payload": {
-            "token": config.csgoroll_api_token
-        }
-    });
+    // 1. Send connection_init — no payload, auth is via Cookie header
+    let init_msg = serde_json::json!({"type": "connection_init"});
     ws.send(Message::Text(init_msg.to_string())).await?;
 
-    // 2. Wait for connection_ack
+    // 2. Wait for connection_ack — handle server pings while waiting
     loop {
         match ws.next().await {
             Some(Ok(Message::Text(text))) => {
@@ -98,6 +93,11 @@ pub async fn connect_once(
                     "connection_ack" => {
                         println!("[ws] connection_ack received. Subscribing...");
                         break;
+                    }
+                    "ping" => {
+                        // Server may ping before ack — respond with pong
+                        let pong = serde_json::json!({"type": "pong"});
+                        ws.send(Message::Text(pong.to_string())).await?;
                     }
                     "connection_error" => {
                         return Err(format!("connection_error: {:?}", parsed.payload).into());

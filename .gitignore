@@ -1,0 +1,10 @@
+# Credentials — never commit
+.env
+
+# Rust build output
+/target/
+
+# Editor
+.idea/
+.vscode/
+*.swp

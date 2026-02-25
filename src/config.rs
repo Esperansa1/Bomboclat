@@ -2,7 +2,6 @@ use std::env;
 use std::process;
 
 pub struct Config {
-    pub csgoroll_api_token: String,
     pub csgoroll_session: String,
     pub capsolver_api_key: String,
 }
@@ -12,16 +11,14 @@ impl Config {
         // Load .env file if present; silently ignore if missing (env vars may be set externally)
         dotenvy::dotenv().ok();
 
-        let csgoroll_api_token = Self::require_var("CSGOROLL_API_TOKEN");
         let csgoroll_session = Self::require_var("CSGOROLL_SESSION");
         let capsolver_api_key = Self::require_var("CAPSOLVER_API_KEY");
 
         println!(
-            "[config] All credentials loaded: CSGOROLL_API_TOKEN=***, CSGOROLL_SESSION=***, CAPSOLVER_API_KEY=***"
+            "[config] All credentials loaded: CSGOROLL_SESSION=***, CAPSOLVER_API_KEY=***"
         );
 
         Config {
-            csgoroll_api_token,
             csgoroll_session,
             capsolver_api_key,
         }

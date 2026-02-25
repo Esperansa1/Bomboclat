@@ -5,9 +5,9 @@ mod ws;
 async fn main() {
     let config = config::Config::load();
 
-    println!("[main] Starting WebSocket connection...");
+    println!("[main] CSGORoll Sniper starting persistent WebSocket loop...");
 
-    match ws::connect_once(&config, |trade| {
+    ws::run_with_reconnect(&config, |trade| {
         println!(
             "[trade] id={} markup={:.2}% price={:.2} canJoin={} status={} item=\"{}\" stattrak={}",
             trade.id,
@@ -19,9 +19,5 @@ async fn main() {
             trade.is_stattrak,
         );
     })
-    .await
-    {
-        Ok(()) => println!("[main] Connection closed cleanly."),
-        Err(e) => eprintln!("[main] Connection error: {}", e),
-    }
+    .await;
 }
